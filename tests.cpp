@@ -9,46 +9,69 @@ TEST_CASE("ex1 deleteon() ", "[example]")
 	vector<int> number = {2, 1, 4, 4, 0, 4, 3, 3, 4, 0};
 	int size = 10;
 	int result, usernum;
-	// srand(time(0));
-	// makevector(number, size);
-	sort(number.begin(), number.end());
+	cout << "The original vector " << endl;
 	printvector(number);
 	usernum = 4;
 	result = deleteone(number, usernum);
+	cout << usernum << " is deleted " << result << " times \n";
+	cout << "After deletion, the vetor is: ";
+	printvector(number);
 	INFO(" 4 should be deleted 4 times. Your return value is " << result);
 	REQUIRE(result == 4);
+	cout << "Your vector size is " << number.size() << endl;
 	INFO(" Vector size is 6. Your size is " << number.size());
 	REQUIRE(number.size() == 6);
 	cout << "--------------------------------------------------\n";
 	usernum = 0;
 	result = deleteone(number, usernum);
+	cout << usernum << " is deleted " << result << " times \n";
+	cout << "After deletion, the vetor is: ";
+	printvector(number);
 	INFO(" 0 should be deleted 2 times. Your return value is " << result);
 	REQUIRE(result == 2);
-	// INFO(" Vector size is 4. Your size is " << number.size());
-	// REQUIRE(number.size() == 4);
-	// cout << "--------------------------------------------------\n";
-	// usernum = 20;
-	// result = deleteone(number, usernum);
-	// INFO("The result should be 0 when the value is not found\n");
-	// REQUIRE(result == 0);
-	// REQUIRE(number.size() == 4);
-	// cout << "--------------------------------------------------\n";
-
-	// REQUIRE(number[idx] == usernum);
+	cout << "Your vector size is " << number.size() << endl;
+	INFO(" Vector size is 4. Your size is " << number.size());
+	REQUIRE(number.size() == 4);
+	cout << "--------------------------------------------------\n";
 }
-// TEST_CASE("ex2 insertone() ", "[example]")
-// {
-// 	vector<int> number = {2, 1, 4, 4, 0, 4, 3, 3, 4, 0};
-// 	int size = 10;
-// 	int result, usernum;
-// 	// srand(time(0));
-// 	// makevector(number, size);
-// 	printvector(number);
-// 	usernum = 20;
-// 	insertone(number, usernum);
-// 	REQUIRE(number[10] == 20);
-// 	REQUIRE(number.size() == 11);
-// 	cout << "--------------------------------------------------\n";
+TEST_CASE("ex2 deleteon() ", "[example]")
+{
+	vector<int> number;
+	int size = 10;
+	int result, usernum;
+	int delcnt, len;
+	cout << "The original vector " << endl;
+	makevector(number, size);
+	printvector(number);
 
-// 	// REQUIRE(number[idx] == usernum);
-// }
+	usernum = 2;
+	delcnt = count(number.begin(), number.end(), usernum);
+	result = deleteone(number, usernum);
+	cout << usernum << " is deleted " << result << " times \n";
+	cout << "After deletion, the vetor is: ";
+	printvector(number);
+	REQUIRE(result == delcnt);
+	cout << "--------------------------------------------------\n";
+
+	len = size - delcnt;
+	cout << "Your vector size is " << number.size() << endl;
+	INFO(" Your size is " << number.size());
+	REQUIRE(number.size() == len);
+	cout << "--------------------------------------------------\n";
+
+	usernum = 3;
+	delcnt = count(number.begin(), number.end(), usernum);
+	result = deleteone(number, usernum);
+	cout << usernum << " is deleted " << result << " times \n";
+	cout << "After deletion, the vetor is: ";
+	printvector(number);
+	REQUIRE(result == delcnt);
+	cout << "--------------------------------------------------\n";
+
+	len = len - delcnt;
+	cout << "Your vector size is " << number.size() << endl;
+	INFO(" Your vector size must be " << len);
+	INFO(" Your size is " << number.size());
+	REQUIRE(number.size() == len);
+	cout << "--------------------------------------------------\n";
+}
