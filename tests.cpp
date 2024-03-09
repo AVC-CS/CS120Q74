@@ -4,74 +4,94 @@
 #include "catch.hpp"
 #include "main.hpp"
 // tests for exercise 1
-TEST_CASE("ex1 deleteon() ", "[example]")
+TEST_CASE("ex1", "[example]")
 {
-	vector<int> number = {2, 1, 4, 4, 0, 4, 3, 3, 4, 0};
-	int size = 10;
-	int result, usernum;
+	int idx, length;
+	int bidx, eidx;
+	vector<int>::iterator it;
+
+	// Test 1
+	vector<int> numbers1 = {6, 7, 0, 4, 5, 2, 10, 1, 8, 2};
 	cout << "The original vector " << endl;
-	printvector(number);
-	usernum = 4;
-	result = deleteone(number, usernum);
-	cout << usernum << " is deleted " << result << " times \n";
-	cout << "After deletion, the vetor is: ";
-	printvector(number);
-	INFO(" 4 should be deleted 4 times. Your return value is " << result);
-	REQUIRE(result == 4);
-	cout << "Your vector size is " << number.size() << endl;
-	INFO(" Vector size is 6. Your size is " << number.size());
-	REQUIRE(number.size() == 6);
-	cout << "--------------------------------------------------\n";
-	usernum = 0;
-	result = deleteone(number, usernum);
-	cout << usernum << " is deleted " << result << " times \n";
-	cout << "After deletion, the vetor is: ";
-	printvector(number);
-	INFO(" 0 should be deleted 2 times. Your return value is " << result);
-	REQUIRE(result == 2);
-	cout << "Your vector size is " << number.size() << endl;
-	INFO(" Vector size is 4. Your size is " << number.size());
-	REQUIRE(number.size() == 4);
-	cout << "--------------------------------------------------\n";
+	length = numbers1.size();
+	printvector(numbers1);
+	sortEvenNumber(numbers1);
+	printvector(numbers1);
+	REQUIRE(numbers1[0] == 0);
+	REQUIRE(numbers1[2] == 2);
+	REQUIRE(numbers1[3] == 2);
+	REQUIRE(numbers1[5] == 4);
+	REQUIRE(numbers1[6] == 6);
+	REQUIRE(numbers1[8] == 8);
+	REQUIRE(numbers1[9] == 10);
+
+	// Insert 2
+	it = find(numbers1.begin(), numbers1.end(), 2);
+	bidx = distance(numbers1.begin(), it);
+	it = find(numbers1.begin(), numbers1.end(), 6);
+	eidx = distance(numbers1.begin(), it);
+
+	idx = insertEvenNumber(numbers1, 2);
+	cout << "Inserted index " << idx << endl;
+	printvector(numbers1);
+	REQUIRE(idx >= bidx);
+	REQUIRE(idx < eidx);
+	REQUIRE(numbers1.size() == length + 1);
+
+	// Insert 12
+	idx = insertEvenNumber(numbers1, 12);
+	cout << "Inserted index " << idx << endl;
+	printvector(numbers1);
+	REQUIRE(idx == 11);
+	REQUIRE(numbers1.size() == length + 2);
+
+	// Delete 2
+	idx = deleteEvenNumber(numbers1, 2);
+	cout << "Deleted items " << idx << endl;
+	printvector(numbers1);
+	REQUIRE(idx == 3);
+	REQUIRE(find(numbers1.begin(), numbers1.end(), 2) == numbers1.end());
+
+	// Delete 12
+	idx = deleteEvenNumber(numbers1, 12);
+	cout << "Deleted items " << idx << endl;
+	printvector(numbers1);
+	REQUIRE(idx == 1);
+	REQUIRE(find(numbers1.begin(), numbers1.end(), 12) == numbers1.end());
 }
-TEST_CASE("ex2 deleteon() ", "[example]")
+
+TEST_CASE("ex2", "[example]")
 {
-	vector<int> number;
-	int size = 10;
-	int result, usernum;
-	int delcnt, len;
+	int idx, length;
+	int bidx, eidx;
+	vector<int>::iterator it;
+
+	// Test 2
+	vector<int> numbers1;
+	makevector(numbers1, 20);
 	cout << "The original vector " << endl;
-	makevector(number, size);
-	printvector(number);
+	length = numbers1.size();
+	printvector(numbers1);
+	sortEvenNumber(numbers1);
+	printvector(numbers1);
 
-	usernum = 2;
-	delcnt = count(number.begin(), number.end(), usernum);
-	result = deleteone(number, usernum);
-	cout << usernum << " is deleted " << result << " times \n";
-	cout << "After deletion, the vetor is: ";
-	printvector(number);
-	REQUIRE(result == delcnt);
-	cout << "--------------------------------------------------\n";
+	int flag = 1, prev = -1;
+	for (int i = 0; i < numbers1.size(); i++)
+	{
+		if (numbers1[i] % 2 == 0)
+		{
+			if (prev > numbers1[i])
+			{
+				flag = 0;
+				break;
+			}
+			prev = numbers1[i];
+		}
+	}
+	REQUIRE(flag == 1);
 
-	len = size - delcnt;
-	cout << "Your vector size is " << number.size() << endl;
-	INFO(" Your size is " << number.size());
-	REQUIRE(number.size() == len);
-	cout << "--------------------------------------------------\n";
-
-	usernum = 3;
-	delcnt = count(number.begin(), number.end(), usernum);
-	result = deleteone(number, usernum);
-	cout << usernum << " is deleted " << result << " times \n";
-	cout << "After deletion, the vetor is: ";
-	printvector(number);
-	REQUIRE(result == delcnt);
-	cout << "--------------------------------------------------\n";
-
-	len = len - delcnt;
-	cout << "Your vector size is " << number.size() << endl;
-	INFO(" Your vector size must be " << len);
-	INFO(" Your size is " << number.size());
-	REQUIRE(number.size() == len);
-	cout << "--------------------------------------------------\n";
+	idx = insertEvenNumber(numbers1, 22);
+	printvector(numbers1);
+	REQUIRE(idx == 20);
+	REQUIRE(numbers1.size() == length + 1);
 }

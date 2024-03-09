@@ -2,33 +2,45 @@
 
 int main()
 {
-	int size = 10;
-	int usernum, result;
-	srand(time(0));
+	int idx;
 
 	// Test 1
-	vector<int> numbers1 = {2, 1, 4, 4, 0, 4, 3, 3, 4, 0};
+	vector<int> numbers1 = {6, 7, 0, 4, 5, 2, 10, 1, 8, 2};
 	cout << "The original vector " << endl;
 	printvector(numbers1);
-
-	usernum = 4;
-	result = deleteone(numbers1, usernum);
-	cout << "Return value for deleting count " << result << endl; // It should be 4
+	sortEvenNumber(numbers1);
+	printvector(numbers1);
+	// Insert 2
+	idx = insertEvenNumber(numbers1, 2);
+	cout << "Inserted index " << idx << endl;
 	printvector(numbers1);
 
-	usernum = 0;
-	result = deleteone(numbers1, usernum);
-	cout << "Return value for deleting count " << result << endl; // 2
+	// Insert 12
+	idx = insertEvenNumber(numbers1, 12);
+	cout << "Inserted index " << idx << endl;
 	printvector(numbers1);
 
-	// Test 2
+	// Delete 2
+	idx = deleteEvenNumber(numbers1, 2);
+	cout << "Deleted items " << idx << endl;
+	printvector(numbers1);
+
+	// Delete 12
+	idx = deleteEvenNumber(numbers1, 12);
+	cout << "Deleted items " << idx << endl;
+	printvector(numbers1);
+
+	/***************************************************
+	 * Test 2 for the vector with Random Values
+	 ***************************************************/
 	vector<int> numbers2;
-	makevector(numbers2, size);
+	makevector(numbers2, 20);
 	cout << "The original vector " << endl;
 	printvector(numbers2);
+	sortEvenNumber(numbers2);
+	printvector(numbers2);
 
-	usernum = 2;
-	result = deleteone(numbers2, usernum);
-	cout << "Return value for deleting count " << result << endl;
+	// Insert 22
+	idx = insertEvenNumber(numbers2, 22);
 	printvector(numbers2);
 }

@@ -8,14 +8,33 @@ using namespace std;
 
 void makevector(vector<int> &, int);
 void printvector(vector<int>);
-int deleteone(vector<int> &, int);
-int deleteone(vector<int> &vec, int usernum)
+void sortEvenNumber(vector<int> &);
+int insertEvenNumber(vector<int> &, int);
+int deleteEvenNumber(vector<int> &, int);
+
+void sortEvenNumber(vector<int> &vec)
 {
+	/***************************************************
+	 * Code your program here
+	 ***************************************************/
+}
+int insertEvenNumber(vector<int> &vec, int usernum)
+{
+	/***************************************************
+	 * Code your program here
+	 ***************************************************/
+}
+int deleteEvenNumber(vector<int> &vec, int usernum)
+{
+	/***************************************************
+	 * Code your program here
+	 ***************************************************/
 }
 void makevector(vector<int> &vec, int size)
 {
+	srand(time(0));
 	for (int i = 0; i < size; i++)
-		vec.push_back(rand() % 5);
+		vec.push_back(rand() % 20);
 }
 void printvector(vector<int> vec)
 {
