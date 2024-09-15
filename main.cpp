@@ -9,6 +9,7 @@ int main()
 	cout << "The original vector " << endl;
 	printvector(numbers1);
 	sortEvenNumber(numbers1);
+	cout << "The sorted vector " << endl;
 	printvector(numbers1);
 	// Insert 2
 	idx = insertEvenNumber(numbers1, 2);
