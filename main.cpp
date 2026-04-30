@@ -2,46 +2,13 @@
 
 int main()
 {
-	int idx;
-
-	// Test 1
-	vector<int> numbers1 = {6, 7, 0, 4, 5, 2, 10, 1, 8, 2};
-	cout << "The original vector " << endl;
-	printvector(numbers1);
-	sortEvenNumber(numbers1);
-	cout << "The sorted vector " << endl;
-	printvector(numbers1);
-	// Insert 2
-	idx = insertEvenNumber(numbers1, 2);
-	cout << "Inserted index " << idx << endl;
-	printvector(numbers1);
-
-	// Insert 12
-	idx = insertEvenNumber(numbers1, 12);
-	cout << "Inserted index " << idx << endl;
-	printvector(numbers1);
-
-	// Delete 2
-	idx = deleteEvenNumber(numbers1, 2);
-	cout << "Deleted items " << idx << endl;
-	printvector(numbers1);
-
-	// Delete 12
-	idx = deleteEvenNumber(numbers1, 12);
-	cout << "Deleted items " << idx << endl;
-	printvector(numbers1);
-
-	/***************************************************
-	 * Test 2 for the vector with Random Values
-	 ***************************************************/
-	vector<int> numbers2;
-	makevector(numbers2, 20);
-	cout << "The original vector " << endl;
-	printvector(numbers2);
-	sortEvenNumber(numbers2);
-	printvector(numbers2);
-
-	// Insert 22
-	idx = insertEvenNumber(numbers2, 22);
-	printvector(numbers2);
+    vector<int> vec = {6, 7, 0, 4, 5, 2, 10, 1, 8, 2};
+    cout << "original: "; printvector(vec);
+    sortEvenNumbers(vec);
+    cout << "after sortEvenNumbers: "; printvector(vec);
+    int idx = insertEvenNumber(vec, 6);
+    cout << "after insert 6 (at " << idx << "): "; printvector(vec);
+    int n = deleteEvenNumber(vec, 2);
+    cout << "after delete 2 (removed " << n << "): "; printvector(vec);
+    return 0;
 }

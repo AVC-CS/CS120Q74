@@ -14,17 +14,14 @@ void printvector(vector<int> vec);
 
 void makevector(vector<int> &vec, int N)
 {
-    // TODO
     static bool seeded = false;
     if (!seeded) { srand((unsigned)time(0)); seeded = true; }
     for (int i = 0; i < N; i++)
         vec.push_back(rand() % 20);
-    // END TODO
 }
 
 void sortEvenNumbers(vector<int> &vec)
 {
-    // TODO
     int n = (int)vec.size();
     for (int i = 0; i < n; i++)
     {
@@ -36,12 +33,10 @@ void sortEvenNumbers(vector<int> &vec)
         if (min_idx != i)
             swap(vec[i], vec[min_idx]);
     }
-    // END TODO
 }
 
 int insertEvenNumber(vector<int> &vec, int evenvalue)
 {
-    // TODO
     for (auto it = vec.begin(); it != vec.end(); ++it)
     {
         if (*it % 2 != 0) continue;
@@ -54,12 +49,10 @@ int insertEvenNumber(vector<int> &vec, int evenvalue)
     }
     vec.push_back(evenvalue);
     return (int)vec.size() - 1;
-    // END TODO
 }
 
 int deleteEvenNumber(vector<int> &vec, int value)
 {
-    // TODO
     int count = 0;
     auto it = vec.begin();
     while (it != vec.end())
@@ -68,7 +61,6 @@ int deleteEvenNumber(vector<int> &vec, int value)
         else ++it;
     }
     return count;
-    // END TODO
 }
 
 void printvector(vector<int> vec)
